@@ -1,6 +1,30 @@
+import HeroExperience from '../components/HeroExperience.jsx'
 import { words } from '../constants/index.js'
+import Button from '../components/Button.jsx'
+
+import { useGSAP } from '@gsap/react';
+import gsap from 'gsap'
+import AnimatedCounter from '../components/AnimatedCounter.jsx';
+
+
 
 const hero = () => {
+    useGSAP(() => {
+        gsap.fromTo('.hero-text h1',
+            {
+                y: 50,
+                opacity: 0
+            },
+            {
+                y: 0,
+                opacity: 1,
+                stagger: 0.2,
+                duration: 1,
+                ease: 'power2.inOut'
+            },
+        )
+    })
+
     return (
         <section id="hero" className="relative overflow-hidden">
             <div className="absolute top0 left-0 z-10">
@@ -29,17 +53,28 @@ const hero = () => {
                                     </span>
                                 </span>
                             </h1>
-                            <h1>into Real Projects</h1>
-                            <h1>that deliver results </h1>
+                            <h1>Into Personal Projects</h1>
+                            <h1>That Amass Interest</h1>
                         </div>
                         <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
-                            Hi, I'm Ayinde, an American developer passionate in computer science
+                            Hi, I'm Ayinde Abrams, a passionate computer scientist from the US
                         </p>
-                    </div> 
+                        <Button
+                            text="See My Work"
+                            className="md:w-80 md:h-16 w-60 h-12"
+                            id="counter"
+                        />
+                    </div>
                 </header>
                 {/*RIGHT: 3D Model */}
+                <figure>
+                    <div className="hero-3d-layout">
+                        <HeroExperience />
+                    </div>
+                </figure>
             </div>
-
+            <AnimatedCounter/>
+                                            
         </section>
     )
 }
