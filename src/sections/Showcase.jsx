@@ -40,10 +40,11 @@ const Showcase = () => {
     return (
         <section id="work" ref={sectionRef} className="app-showcase">
             <div className="w-full">
+                <h1>Showcase</h1>
                 <div className="showcaselayout">
                     <div className="first-project-wrapper" ref={project1Ref}>
                         <div className="image-wrapper">
-                            <img src="/images/project1.png" alt="Ryde" />
+                            <img src="/images/deltaspace.png" alt="Deltaspace" />
                         </div>
                         <div className="text-content">
                             <h2>On-Demand Rides Made Simple with a Powerful, User-Friendly App called Ryde</h2>
