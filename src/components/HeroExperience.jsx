@@ -4,7 +4,7 @@ import { OrbitControls } from '@react-three/drei';
 
 import { useMediaQuery } from 'react-responsive';
 
-import { Irene } from '/Users/ayindeabrams/self-portfolio/src/components/HeroModels/Irene.jsx';
+import { Irene } from '../components/HeroModels/Irene.jsx';
 
 const HeroExperience = () => {
 
