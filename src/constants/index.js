@@ -114,31 +114,31 @@ const navLinks = [
   
   const techStackIcons = [
     {
-      name: "React Developer",
+      name: "Unity",
       modelPath: "/models/react_logo-transformed.glb",
       scale: 1,
       rotation: [0, 0, 0],
     },
     {
-      name: "Python Developer",
+      name: "Java",
       modelPath: "/models/python-transformed.glb",
       scale: 0.8,
       rotation: [0, 0, 0],
     },
     {
-      name: "Backend Developer",
+      name: "Linux/Bash",
       modelPath: "/models/node-transformed.glb",
       scale: 5,
       rotation: [0, -Math.PI / 2, 0],
     },
     {
-      name: "Interactive Developer",
+      name: "Blender",
       modelPath: "/models/three.js-transformed.glb",
       scale: 0.05,
       rotation: [0, 0, 0],
     },
     {
-      name: "Project Manager",
+      name: "Git",
       modelPath: "/models/git-svg-transformed.glb",
       scale: 0.05,
       rotation: [0, -Math.PI / 4, 0],
