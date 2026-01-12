@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, NavLink } from 'react-router-dom'
 import { navLinks } from '../constants/index.js'
 import { useEffect, useState } from 'react'
 
@@ -8,7 +9,7 @@ const NavBar = () => {
     useEffect(() => {
         const handleScroll = () => {
             const isScrolled = window.scrollY > 10;
-            setScrolled(true);
+            setScrolled(isScrolled);
         }
         window.addEventListener('scroll', handleScroll);
 
@@ -17,29 +18,29 @@ const NavBar = () => {
     return (
         <header className={`navbar ${scrolled ? 'scrolled' : 'not-scrolled'}`}>
             <div className="inner">
-                <a className="logo" href="#hero">
+                <NavLink className="logo" to="/">
                     Ayinde Abrams
-                </a>
+                </NavLink>
 
                 <nav className="desktop">
                     <ul>
-                        {navLinks.map(({ link, name }) => (
+                        {navLinks.map(({ path, name }) => (
                             <li key={name} className="group">
-                                <a href={link}>
+                                <NavLink to={path}>
                                     <span>{name}</span>
                                     <span className="underline" />
-                                </a>
+                                </NavLink>
                             </li>
                         ))}
                     </ul>
                 </nav>
 
-                <a href="#contact" className="contact-btn group">
+                <Link to="/contact" className="contact-btn group">
                     <div className="inner">
                         <span>Contact Me</span>
                     </div>
 
-                </a>
+                </Link>
             </div>
         </header>
     )

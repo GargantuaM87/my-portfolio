@@ -1,10 +1,8 @@
 import HeroExperience from '../components/HeroExperience.jsx'
 import { words } from '../constants/index.js'
-import Button from '../components/Button.jsx'
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap'
-import AnimatedCounter from '../components/AnimatedCounter.jsx';
 
 
 
@@ -56,25 +54,48 @@ const hero = () => {
                             <h1>Into Personal Projects</h1>
                             <h1>That Amass Interest</h1>
                         </div>
-                        <p className="text-white-50 md:text-xl relative z-10 pointer-events-none">
-                            Hi, I'm Ayinde Abrams, a passionate computer scientist from the US
-                        </p>
-                        <Button
-                            text="See My Work"
-                            className="md:w-80 md:h-16 w-60 h-12"
-                            id="counter"
-                        />
+
+                        <section className="mt-8 max-w-3xl">
+                            <h2 className="text-3xl md:text-4xl font-semibold mb-4">
+                                What's Good?!
+                            </h2>
+                            <p className="text-white-50 md:text-xl leading-relaxed">
+                                I've always had an interest in 3D art and game development and this
+                                is my little corner to express those interests, encourage my chronic overthinking, and develop my
+                                identity a little more.
+
+
+                                <p className="text-white-50 md:text-xl leading-relaxed mt-4">
+                                            Currently I'm learning Computer Graphics through OpenGL. Some really math heavy stuff, 
+                                            it really teaches me to love math more and more. I'm also trying to finish up some abandoned projects,
+                                            before moving onto new ones. They'll be posted in the projects section once I'm finished with them!
+                                </p>
+                            </p>
+                            <h3 className="text-2xl md:text-3xl font-semibold mt-4">
+                                Some stuff that definately don't matter!
+                            </h3>
+                            <p className="text-white-50 md:text-xl leading-relaxed mt-4 indent-10">
+                                • I have an Afro-Caribbean-South-American heritage (Guyanese)
+                            </p>
+                            <p className="text-white-50 md:text-xl leading-relaxed mt-4 indent-10">
+                                • Track and Field is my favorite sport
+                            </p>
+                            <p className="text-white-50 md:text-xl leading-relaxed mt-4 indent-10">
+                                • I'm a huge cat person, but I don't own one (yet)
+                            </p>
+                            <p className="text-white-50 md:text-xl leading-relaxed mt-4 indent-10">
+                                • 
+                            </p>
+                        </section>
                     </div>
                 </header>
                 {/*RIGHT: 3D Model */}
                 <figure>
-                    <div className="hero-3d-layout">
+            <div className="hero-3d-layout">
                         <HeroExperience />
                     </div>
                 </figure>
             </div>
-            <AnimatedCounter/>
-                                            
         </section>
     )
 }
