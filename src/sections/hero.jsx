@@ -55,9 +55,9 @@ const hero = () => {
                             <h1>That Amass Interest</h1>
                         </div>
 
-                        <section className="mt-8 max-w-3xl">
+                        <section className="mt-2 max-w-3xl">
                             <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-                                What's Good?!
+                                Welcome!
                             </h2>
                             <p className="text-white-50 md:text-xl leading-relaxed">
                                 I've always had an interest in 3D art and game development and this
@@ -65,26 +65,27 @@ const hero = () => {
                                 identity a little more.
 
 
-                                <p className="text-white-50 md:text-xl leading-relaxed mt-4">
+                                <p className="text-white-50 md:text-xl leading-relaxed mt-2">
                                             Currently I'm learning Computer Graphics through OpenGL. Some really math heavy stuff, 
                                             it really teaches me to love math more and more. I'm also trying to finish up some abandoned projects,
                                             before moving onto new ones. They'll be posted in the projects section once I'm finished with them!
                                 </p>
                             </p>
-                            <h3 className="text-2xl md:text-3xl font-semibold mt-4">
+                            <h3 className="text-2xl md:text-3xl font-semibold mt-2">
                                 Some stuff that definately don't matter!
                             </h3>
-                            <p className="text-white-50 md:text-xl leading-relaxed mt-4 indent-10">
+                            <p className="text-white-50 md:text-xl leading-relaxed mt-2 indent-10">
                                 • I have an Afro-Caribbean-South-American heritage (Guyanese)
                             </p>
-                            <p className="text-white-50 md:text-xl leading-relaxed mt-4 indent-10">
+                            <p className="text-white-50 md:text-xl leading-relaxed mt-2 indent-10">
                                 • Track and Field is my favorite sport
                             </p>
-                            <p className="text-white-50 md:text-xl leading-relaxed mt-4 indent-10">
+                            <p className="text-white-50 md:text-xl leading-relaxed mt-2 indent-10">
                                 • I'm a huge cat person, but I don't own one (yet)
                             </p>
-                            <p className="text-white-50 md:text-xl leading-relaxed mt-4 indent-10">
-                                • 
+                            <p className="text-white-50 md:text-xl leading-relaxed mt-2 indent-10">
+                                • I listen to so many genres of music like jazz, lofi-hiphop, rap, samba, afrobeats 
+                                    and more
                             </p>
                         </section>
                     </div>

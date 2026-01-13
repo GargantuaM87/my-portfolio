@@ -4,7 +4,7 @@ import { OrbitControls } from '@react-three/drei';
 
 import { useMediaQuery } from 'react-responsive';
 
-import { Irene } from '../components/HeroModels/Irene.jsx';
+import { Characters } from '../components/HeroModels/CollectiveScene.jsx';
 
 const HeroExperience = () => {
 
@@ -38,10 +38,10 @@ const HeroExperience = () => {
 
             <group
                 scale={isMobile ? 0.7 : 1}
-                position={[0, -3.5, 0]}
+                position={[0, 0, 0]}
                 rotation={[0, -Math.PI / 4, 0]}
             /> 
-            <Irene />
+            <Characters />
 
         </Canvas>
 
