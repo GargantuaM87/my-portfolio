@@ -491,3 +491,73 @@ section {
 .card:hover::before {
   opacity: 1;
 }
+
+/* Project sidebar (slide-in from right) */
+.project-sidebar {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: block;
+}
+
+.project-sidebar .overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  backdrop-filter: blur(2px);
+  animation: overlayFadeIn 260ms ease forwards;
+}
+
+.project-sidebar .panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100vh;
+  width: min(480px, 100%);
+  max-width: 100%;
+  background: linear-gradient(180deg, #0b0b10 0%, #111123 100%);
+  box-shadow: -20px 0 60px rgba(2,1,42,0.6);
+  transform: translateX(100%);
+  animation: slideInFromRight 360ms cubic-bezier(.2,.9,.2,1) forwards;
+  padding: 28px;
+  overflow-y: auto;
+}
+
+.project-sidebar .panel .close-btn {
+  background: transparent;
+  border: 0;
+  color: var(--color-white-50, #d9ecff);
+  font-weight: 600;
+  cursor: pointer;
+  padding: 6px 10px;
+}
+
+.project-sidebar .panel .panel-content img {
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.project-sidebar .panel .tools-list {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.project-sidebar .panel .tools-list li {
+  list-style: none;
+  background: rgba(255,255,255,0.04);
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+
+@keyframes slideInFromRight {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(0%); }
+}
+
+@keyframes overlayFadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}

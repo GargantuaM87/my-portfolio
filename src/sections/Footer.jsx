@@ -1,12 +1,16 @@
 import React from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { socialImgs } from '../constants/index.js'
 
 const Footer = () => {
+  const location = useLocation()
+  const onBlog = location.pathname === '/blog'
+
   return (
     <footer className="footer">
         <div className="footer-container">
             <div className="flex flex-col justify-center md:items-start items-center">
-                <a href="/">Visit my Blog</a>
+                <Link to="/blog">{onBlog ? "You're on my Blog" : 'Visit my Blog'}</Link>
             </div>
             <div className="socials">
                 {socialImgs.map((img) => (
