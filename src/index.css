@@ -85,6 +85,14 @@ section {
     @apply relative z-10 xl:mt-20 mt-32 md:h-dvh h-[80vh] flex xl:items-center items-start justify-center;
   }
 
+  .hero-heading-with-bar {
+    @apply flex items-center gap-3;
+  }
+
+  .hero-heading-bar {
+    @apply w-1 h-8 bg-sky-400 rounded-full;
+  }
+
   .hero-text {
     @apply flex flex-col justify-center md:text-[60px] text-[30px] font-semibold relative z-10 pointer-events-none;
     img {
@@ -131,12 +139,24 @@ section {
         li {
           @apply text-white-50 relative;
 
-          span {
+          .nav-link {
+            @apply relative flex items-center gap-1;
+          }
+
+          .nav-link span:first-child {
             @apply transition-colors duration-300 hover:text-white;
           }
 
           .underline {
-            @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full;
+            @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-white/60 transition-all duration-300 group-hover:w-full;
+          }
+
+          .active-indicator {
+            @apply absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-3 rounded-full bg-sky-400 opacity-0 transition-opacity duration-300;
+          }
+
+          .nav-link-active .active-indicator {
+            @apply opacity-100;
           }
         }
       }
@@ -313,7 +333,7 @@ section {
       @apply flex items-center justify-center gap-5;
 
       .icon {
-        @apply border border-black-50 bg-black-100 flex justify-center items-center rounded-xl size-10 md:size-12 cursor-pointer transition-all duration-500 hover:bg-black-50;
+        @apply border border-black-50 bg-blue-950 flex justify-center items-center rounded-xl size-10 md:size-12 cursor-pointer transition-all duration-500 hover:bg-black-50;
       }
 
       img {

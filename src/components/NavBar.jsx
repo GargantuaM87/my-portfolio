@@ -26,9 +26,15 @@ const NavBar = () => {
                     <ul>
                         {navLinks.map(({ path, name }) => (
                             <li key={name} className="group">
-                                <NavLink to={path}>
+                                <NavLink
+                                  to={path}
+                                  className={({ isActive }) =>
+                                    isActive ? 'nav-link nav-link-active' : 'nav-link'
+                                  }
+                                >
                                     <span>{name}</span>
                                     <span className="underline" />
+                                    <span className="active-indicator" />
                                 </NavLink>
                             </li>
                         ))}

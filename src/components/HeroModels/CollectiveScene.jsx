@@ -10,7 +10,7 @@ import { SkeletonUtils } from 'three-stdlib'
 
 export function Characters(props) {
   const group = React.useRef()
-  const { scene, animations } = useGLTF('models/CollectiveScene.glb')
+  const { scene, animations } = useGLTF('/models/CollectiveScene.glb')
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone)
   const { actions } = useAnimations(animations, group)
@@ -33,12 +33,15 @@ export function Characters(props) {
     if (!actions) return
 
     Object.values(actions).forEach((action) => {
-      action.reset().fadeIn(0.5).play()
+      if (!action) return
+      action.reset?.()
+      action.fadeIn?.(0.5)
+      action.play?.()
     })
 
     return () => {
       Object.values(actions).forEach((action) => {
-        action.fadeOut(0.5)
+        action?.fadeOut?.(0.5)
       })
     }
   }, [actions])
@@ -108,4 +111,4 @@ export function Characters(props) {
   )
 }
 
-useGLTF.preload('models/CollectiveScene.glb')
+useGLTF.preload('/models/CollectiveScene.glb')

@@ -9,7 +9,7 @@ import { useGLTF } from '@react-three/drei'
 import { SkeletonUtils } from 'three-stdlib'
 
 export function Irene(props) {
-  const { scene } = useGLTF('models/Irene.glb')
+  const { scene } = useGLTF('/models/Irene.glb')
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
   const { nodes, materials } = useGraph(clone)
   return (
@@ -35,4 +35,4 @@ export function Irene(props) {
   )
 }
 
-useGLTF.preload('models/Irene.glb')
+useGLTF.preload('/models/Irene.glb')

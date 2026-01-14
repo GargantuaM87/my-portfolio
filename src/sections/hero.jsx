@@ -56,24 +56,28 @@ const hero = () => {
                         </div>
 
                         <section className="mt-2 max-w-3xl">
-                            <h2 className="text-3xl md:text-4xl font-semibold mb-4">
-                                Welcome!
-                            </h2>
+                            <div className="hero-heading-with-bar mb-4">
+                                <span className="hero-heading-bar" />
+                                <h2 className="text-3xl md:text-4xl font-semibold">
+                                    Welcome!
+                                </h2>
+                            </div>
                             <p className="text-white-50 md:text-xl leading-relaxed">
                                 I've always had an interest in 3D art and game development and this
                                 is my little corner to express those interests, encourage my chronic overthinking, and develop my
                                 identity a little more.
-
-
-                                <p className="text-white-50 md:text-xl leading-relaxed mt-2">
-                                            Currently I'm learning Computer Graphics through OpenGL. Some really math heavy stuff, 
-                                            it really teaches me to love math more and more. I'm also trying to finish up some abandoned projects,
-                                            before moving onto new ones. They'll be posted in the projects section once I'm finished with them!
-                                </p>
                             </p>
-                            <h3 className="text-2xl md:text-3xl font-semibold mt-2">
-                                Some stuff that definately don't matter!
-                            </h3>
+                            <p className="text-white-50 md:text-xl leading-relaxed mt-2">
+                                Currently I'm learning Computer Graphics through OpenGL. Some really math heavy stuff,
+                                it really teaches me to love math more and more. I'm also trying to finish up some abandoned projects,
+                                before moving onto new ones. They'll be posted in the projects section once I'm finished with them!
+                            </p>
+                            <div className="hero-heading-with-bar mt-2">
+                                <span className="hero-heading-bar" />
+                                <h3 className="text-2xl md:text-3xl font-semibold">
+                                    Tidbits!
+                                </h3>
+                            </div>
                             <p className="text-white-50 md:text-xl leading-relaxed mt-2 indent-10">
                                 • I have an Afro-Caribbean-South-American heritage (Guyanese)
                             </p>
