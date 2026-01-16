@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react'
 import TitleHeader from '../components/TitleHeader';
+import { useSidebar } from '../contexts/SidebarContext.jsx';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -12,6 +13,7 @@ const Showcase = () => {
     const project2Ref = useRef(null);
     const project3Ref = useRef(null);
     const [activeProject, setActiveProject] = useState(null)
+    const { openSidebar, closeSidebar } = useSidebar();
 
     const projects = [
         {
@@ -23,14 +25,14 @@ const Showcase = () => {
         },
         {
             id: 'p2',
-            title: 'Sinful Waves - A Collaborative Game Off 2025 Submission',
+            title: 'Sinful Waves',
             img: '/images/sinfulWaves.png',
             description: 'A collaborative game jam submission showcasing gameplay and cooperative mechanics.',
             tools: ['Unity', 'C#', 'Netcode']
         },
         {
             id: 'p3',
-            title: 'YC Directory - A Startup Showcase App',
+            title: 'Placeholder',
             img: '/images/project3.png',
             description: 'A small directory app to showcase startups and profiles.',
             tools: ['React', 'Vite', 'Tailwind']
@@ -69,31 +71,46 @@ const Showcase = () => {
                <TitleHeader title="Showcase" sub="My Projects"/>
                 <div className="showcaselayout">
                     <div className="first-project-wrapper" ref={project1Ref}>
-                        <div className="image-wrapper clickable" onClick={() => setActiveProject(projects[0])}>
+                        <div className="image-wrapper clickable" onClick={() => {
+                            setActiveProject(projects[0]);
+                            openSidebar();
+                        }}>
                             <img src={projects[0].img} alt={projects[0].title} />
                         </div>
                         <div className="text-content">
-                            <h2 onClick={() => setActiveProject(projects[0])} className="clickable">{projects[0].title}</h2>
-                            <p className="text-white-50 md:text-xl">
-                                {projects[0].description}
-                            </p>
+                            <h2 onClick={() => {
+                                setActiveProject(projects[0]);
+                                openSidebar();
+                            }} className="clickable">{projects[0].title}</h2>
                         </div>
                     </div>
                     <div className="project-list-wrapper overflow-hidden">
                         <div className="project" ref={project2Ref}>
-                            <div className="image-wrapper clickable" onClick={() => setActiveProject(projects[1])}>
+                            <div className="image-wrapper clickable" onClick={() => {
+                                setActiveProject(projects[1]);
+                                openSidebar();
+                            }}>
                                 <img src={projects[1].img} alt={projects[1].title} />
                             </div>
-                            <h2 onClick={() => setActiveProject(projects[1])} className="clickable">
+                            <h2 onClick={() => {
+                                setActiveProject(projects[1]);
+                                openSidebar();
+                            }} className="clickable">
                                 {projects[1].title}
                             </h2>
                         </div>
 
                         <div className="project" ref={project3Ref}>
-                            <div className="image-wrapper bg-[#ffe7eb] clickable" onClick={() => setActiveProject(projects[2])}>
+                            <div className="image-wrapper bg-[#ffe7eb] clickable" onClick={() => {
+                                setActiveProject(projects[2]);
+                                openSidebar();
+                            }}>
                                 <img src={projects[2].img} alt={projects[2].title} />
                             </div>
-                            <h2 onClick={() => setActiveProject(projects[2])} className="clickable">
+                            <h2 onClick={() => {
+                                setActiveProject(projects[2]);
+                                openSidebar();
+                            }} className="clickable">
                                 {projects[2].title}
                             </h2>
                         </div>
@@ -103,14 +120,27 @@ const Showcase = () => {
                 {/* Sidebar for project details */}
                 {activeProject && (
                     <div className="project-sidebar">
-                        <div className="overlay" onClick={() => setActiveProject(null)} />
+                        <div className="overlay" onClick={() => {
+                            setActiveProject(null);
+                            closeSidebar();
+                        }} />
                         <aside className="panel">
-                            <button className="close-btn" onClick={() => setActiveProject(null)}>Close</button>
+                            <button className="close-btn" onClick={() => {
+                                setActiveProject(null);
+                                closeSidebar();
+                            }}>Close</button>
                             <div className="panel-content">
                                 <img src={activeProject.img} alt={activeProject.title} className="w-full rounded" />
-                                <h3 className="mt-4">{activeProject.title}</h3>
+                                <div className="hero-heading-with-bar mt-2">
+                                    <span className="hero-heading-bar"></span>
+                                    <h3 className="text-2xl md:text-3xl font-semibold mt-4">{activeProject.title}</h3>
+                                </div>
+                                
                                 <p className="mt-2">{activeProject.description}</p>
-                                <h4 className="mt-4">Tools</h4>
+                                <div className="hero-heading-with-bar">
+                                    <span className="hero-heading-bar mt-2"></span>
+                                    <h4 className="text-2xl md:text-3xl font-semibold mt-4">Tools</h4>
+                                </div>
                                 <ul className="tools-list">
                                     {activeProject.tools.map((t) => (
                                         <li key={t}>{t}</li>

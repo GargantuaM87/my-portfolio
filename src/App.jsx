@@ -6,21 +6,24 @@ import Projects from './pages/Projects.jsx'
 import Blog from './pages/Blog.jsx'
 import TechStack from './pages/TechStack.jsx'
 import Contact from './pages/Contact.jsx'
+import { SidebarProvider } from './contexts/SidebarContext.jsx'
 
 const App = () => {
     return (
         <BrowserRouter>
-            <NavBar />
-            <main>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/projects" element={<Projects />} />
-                    <Route path="/blog" element={<Blog />} />
-                    <Route path="/tech-stack" element={<TechStack />} />
-                    <Route path="/contact" element={<Contact />} />
-                </Routes>
-            </main>
-            <Footer />
+            <SidebarProvider>
+                <NavBar />
+                <main>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/projects" element={<Projects />} />
+                        <Route path="/blog" element={<Blog />} />
+                        <Route path="/tech-stack" element={<TechStack />} />
+                        <Route path="/contact" element={<Contact />} />
+                    </Routes>
+                </main>
+                <Footer />
+            </SidebarProvider>
         </BrowserRouter>
     )
 }

@@ -2,9 +2,11 @@ import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { navLinks } from '../constants/index.js'
 import { useEffect, useState } from 'react'
+import { useSidebar } from '../contexts/SidebarContext.jsx'
 
 const NavBar = () => {
     const [scrolled, setScrolled] = useState(false);
+    const { isSidebarOpen } = useSidebar();
 
     useEffect(() => {
         const handleScroll = () => {
@@ -15,6 +17,11 @@ const NavBar = () => {
 
         return () => window.removeEventListener('scroll', handleScroll);
     }, [])
+
+    if (isSidebarOpen) {
+        return null;
+    }
+
     return (
         <header className={`navbar ${scrolled ? 'scrolled' : 'not-scrolled'}`}>
             <div className="inner">
