@@ -1,5 +1,6 @@
 import HeroExperience from '../components/HeroExperience.jsx'
 import { words } from '../constants/index.js'
+import { useRef, useEffect } from 'react'
 
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap'
@@ -7,6 +8,46 @@ import gsap from 'gsap'
 
 
 const hero = () => {
+    const welcomeCardRef = useRef(null)
+    const tidbitsCardRef = useRef(null)
+
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            [welcomeCardRef, tidbitsCardRef].forEach((cardRef) => {
+                if (!cardRef.current) return
+                const rect = cardRef.current.getBoundingClientRect()
+                const x = e.clientX - rect.left
+                const y = e.clientY - rect.top
+                cardRef.current.style.setProperty('--mouse-x', `${x}px`)
+                cardRef.current.style.setProperty('--mouse-y', `${y}px`)
+            })
+        }
+
+        const handleMouseLeave = (e) => {
+            [welcomeCardRef, tidbitsCardRef].forEach((cardRef) => {
+                if (!cardRef.current) return
+                const rect = cardRef.current.getBoundingClientRect()
+                if (
+                    e.clientX < rect.left ||
+                    e.clientX > rect.right ||
+                    e.clientY < rect.top ||
+                    e.clientY > rect.bottom
+                ) {
+                    cardRef.current.style.setProperty('--mouse-x', '-1000px')
+                    cardRef.current.style.setProperty('--mouse-y', '-1000px')
+                }
+            })
+        }
+
+        document.addEventListener('mousemove', handleMouseMove)
+        document.addEventListener('mouseleave', handleMouseLeave)
+
+        return () => {
+            document.removeEventListener('mousemove', handleMouseMove)
+            document.removeEventListener('mouseleave', handleMouseLeave)
+        }
+    }, [])
+
     useGSAP(() => {
         gsap.fromTo('.hero-text h1',
             {
@@ -32,7 +73,7 @@ const hero = () => {
             <div className="hero-layout">
                 {/*LEFT: HERO CONTENT */}
                 <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5">
-                    <div className="flex flex-col gap-7">
+                    <div className="flex flex-col gap-2">
                         <div className="hero-text">
                             <h1>Shaping
                                 <span className="slide">
@@ -55,42 +96,49 @@ const hero = () => {
                             <h1>That Amass Interest</h1>
                         </div>
 
-                        <section className="mt-2 max-w-3xl">
-                            <div className="hero-heading-with-bar mb-4">
-                                <span className="hero-heading-bar" />
-                                <h2 className="text-3xl md:text-4xl font-semibold">
-                                    Welcome!
-                                </h2>
+                        <section className="mt-2 max-w-3xl space-y-6">
+                            <div ref={welcomeCardRef} className="card-border card-highlight rounded-xl p-8 bg-black-100">
+                                <div className="hero-heading-with-bar mb-4">
+                                    <span className="hero-heading-bar" />
+                                    <h2 className="text-3xl md:text-4xl font-semibold">
+                                        Welcome!
+                                    </h2>
+                                </div>
+                                <p className="text-white-50 md:text-xl leading-relaxed">
+                                    I've always had an interest in 3D art and game development and this
+                                    is my little corner to express those interests, encourage my chronic overthinking, and develop my
+                                    identity a little more.
+                                </p>
+                                <p className="text-white-50 md:text-xl leading-relaxed mt-4">
+                                    Currently I'm learning Computer Graphics through OpenGL. Some really math heavy stuff,
+                                    it really teaches me to love math more and more. I'm also trying to finish up some abandoned projects,
+                                    before moving onto new ones. They'll be posted in the projects section once I'm finished with them!
+                                </p>
                             </div>
-                            <p className="text-white-50 md:text-xl leading-relaxed">
-                                I've always had an interest in 3D art and game development and this
-                                is my little corner to express those interests, encourage my chronic overthinking, and develop my
-                                identity a little more.
-                            </p>
-                            <p className="text-white-50 md:text-xl leading-relaxed mt-2">
-                                Currently I'm learning Computer Graphics through OpenGL. Some really math heavy stuff,
-                                it really teaches me to love math more and more. I'm also trying to finish up some abandoned projects,
-                                before moving onto new ones. They'll be posted in the projects section once I'm finished with them!
-                            </p>
-                            <div className="hero-heading-with-bar mt-2">
-                                <span className="hero-heading-bar" />
-                                <h3 className="text-2xl md:text-3xl font-semibold">
-                                    Tidbits!
-                                </h3>
+
+                            <div ref={tidbitsCardRef} className="card-border card-highlight rounded-xl p-8 bg-black-100">
+                                <div className="hero-heading-with-bar mb-4">
+                                    <span className="hero-heading-bar" />
+                                    <h3 className="text-2xl md:text-3xl font-semibold">
+                                        Tidbits!
+                                    </h3>
+                                </div>
+                                <div className="space-y-3">
+                                    <p className="text-white-50 md:text-xl leading-relaxed indent-10">
+                                        • I have an Afro-Caribbean-South-American heritage (Guyanese)
+                                    </p>
+                                    <p className="text-white-50 md:text-xl leading-relaxed indent-10">
+                                        • Track and Field is my favorite sport
+                                    </p>
+                                    <p className="text-white-50 md:text-xl leading-relaxed indent-10">
+                                        • I'm a huge cat person, but I don't own one (yet)
+                                    </p>
+                                    <p className="text-white-50 md:text-xl leading-relaxed indent-10">
+                                        • I listen to so many genres of music like jazz, lofi-hiphop, rap, samba, afrobeats 
+                                            and more
+                                    </p>
+                                </div>
                             </div>
-                            <p className="text-white-50 md:text-xl leading-relaxed mt-2 indent-10">
-                                • I have an Afro-Caribbean-South-American heritage (Guyanese)
-                            </p>
-                            <p className="text-white-50 md:text-xl leading-relaxed mt-2 indent-10">
-                                • Track and Field is my favorite sport
-                            </p>
-                            <p className="text-white-50 md:text-xl leading-relaxed mt-2 indent-10">
-                                • I'm a huge cat person, but I don't own one (yet)
-                            </p>
-                            <p className="text-white-50 md:text-xl leading-relaxed mt-2 indent-10">
-                                • I listen to so many genres of music like jazz, lofi-hiphop, rap, samba, afrobeats 
-                                    and more
-                            </p>
                         </section>
                     </div>
                 </header>

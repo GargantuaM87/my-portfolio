@@ -61,6 +61,29 @@ section {
     @apply grid grid-cols-1;
   }
 
+  .card-highlight {
+    position: relative;
+    --mouse-x: -1000px;
+    --mouse-y: -1000px;
+  }
+
+  .card-highlight::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      circle 80px at var(--mouse-x) var(--mouse-y),
+      rgba(131, 156, 181, 0.3) 0%,
+      rgba(131, 156, 181, 0.1) 40%,
+      transparent 70%
+    );
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
   .grid-2-cols {
     @apply grid grid-cols-1 md:grid-cols-2 gap-6;
   }
