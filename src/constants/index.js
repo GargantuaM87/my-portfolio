@@ -119,26 +119,26 @@ const navLinks = [
   const techStackIcons = [
     {
       name: "Unity",
-      modelPath: "/models/react_logo-transformed.glb",
+      modelPath: "/models/unity_engine_logo.glb",
+      scale: 0.18,
+      rotation: [0, 0, 0],
+    },
+    {
+      name: "C/C++",
+      modelPath: "/models/c.glb",
+      scale: 0.1,
+      rotation: [0, 0, 0],
+    },
+    {
+      name: "OpenGL",
+      modelPath: "/models/opengl_logo.glb",
+      scale: 3.25,
+      rotation: [0, 0, 0],
+    },
+    {
+      name: "Linux (Ubuntu)",
+      modelPath: "/models/gnulinux_logo.glb",
       scale: 1,
-      rotation: [0, 0, 0],
-    },
-    {
-      name: "Java",
-      modelPath: "/models/python-transformed.glb",
-      scale: 0.8,
-      rotation: [0, 0, 0],
-    },
-    {
-      name: "Linux/Bash",
-      modelPath: "/models/node-transformed.glb",
-      scale: 5,
-      rotation: [0, -Math.PI / 2, 0],
-    },
-    {
-      name: "Blender",
-      modelPath: "/models/three.js-transformed.glb",
-      scale: 0.05,
       rotation: [0, 0, 0],
     },
     {
@@ -146,6 +146,24 @@ const navLinks = [
       modelPath: "/models/git-svg-transformed.glb",
       scale: 0.05,
       rotation: [0, -Math.PI / 4, 0],
+    },
+    {
+      name: "C#",
+      modelPath: "/models/csharp.glb",
+      scale: 0.1,
+      rotation: [0, 0, 0],
+    },
+    {
+      name: "Python",
+      modelPath: "/models/python-transformed.glb",
+      scale: 1,
+      rotation: [0, 0, 0],
+    },
+    {
+      name: "Three.js",
+      modelPath: "/models/three.js-transformed.glb",
+      scale: 0.05,
+      rotation: [0, 0, 0],
     },
   ];
   
