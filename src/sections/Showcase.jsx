@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react'
+import React, { useRef, useState, useEffect } from 'react'
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react'
@@ -9,9 +9,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const Showcase = () => {
     const sectionRef = useRef(null);
-    const project1Ref = useRef(null);
-    const project2Ref = useRef(null);
-    const project3Ref = useRef(null);
+    const cardRefs = useRef({});
     const [activeProject, setActiveProject] = useState(null)
     const { openSidebar, closeSidebar } = useSidebar();
 
@@ -20,7 +18,8 @@ const Showcase = () => {
             id: 'p1',
             title: 'Small OpenGL Light Simulation',
             img: '/images/openGLProj.png',
-            description: `This is a simulation of Phong lighting in OpenGL, utilizing components such as ambient, diffuse, and specular lighting. This project is tiny. It consists of some floating cubes, an interactive camera, an ImGui interface for manipulating data, two point lights, a directional light, and a spot light. I plan to gradually fix some features and add more as I continue my journey into Computer Graphics.`,
+            description: `A simulation of Phong lighting in OpenGL with ambient, diffuse, and specular lighting components.`,
+            fullDescription: `This is a simulation of Phong lighting in OpenGL, utilizing components such as ambient, diffuse, and specular lighting. This project is tiny. It consists of some floating cubes, an interactive camera, an ImGui interface for manipulating data, two point lights, a directional light, and a spot light. I plan to gradually fix some features and add more as I continue my journey into Computer Graphics.`,
             tools: ['C++', 'OpenGL', 'GLFW', 'GLEW', 'ImGui']
         },
         {
@@ -28,6 +27,7 @@ const Showcase = () => {
             title: 'Sinful Waves',
             img: '/images/sinfulWaves.png',
             description: 'A collaborative game jam submission showcasing gameplay and cooperative mechanics.',
+            fullDescription: 'A collaborative game jam submission showcasing gameplay and cooperative mechanics.',
             tools: ['Unity', 'C#', 'Netcode']
         },
         {
@@ -35,86 +35,115 @@ const Showcase = () => {
             title: 'Placeholder',
             img: '/images/project3.png',
             description: 'A small directory app to showcase startups and profiles.',
+            fullDescription: 'A small directory app to showcase startups and profiles.',
             tools: ['React', 'Vite', 'Tailwind']
         }
     ]
 
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+          Object.values(cardRefs.current).forEach((ref) => {
+            if (!ref) return
+            const rect = ref.getBoundingClientRect()
+            const x = e.clientX - rect.left
+            const y = e.clientY - rect.top
+            ref.style.setProperty('--mouse-x', `${x}px`)
+            ref.style.setProperty('--mouse-y', `${y}px`)
+          })
+        }
+    
+        const handleMouseLeave = (e) => {
+          Object.values(cardRefs.current).forEach((ref) => {
+            if (!ref) return
+            const rect = ref.getBoundingClientRect()
+            if (
+              e.clientX < rect.left ||
+              e.clientX > rect.right ||
+              e.clientY < rect.top ||
+              e.clientY > rect.bottom
+            ) {
+              ref.style.setProperty('--mouse-x', '-1000px')
+              ref.style.setProperty('--mouse-y', '-1000px')
+            }
+          })
+        }
+    
+        document.addEventListener('mousemove', handleMouseMove)
+        document.addEventListener('mouseleave', handleMouseLeave)
+    
+        return () => {
+          document.removeEventListener('mousemove', handleMouseMove)
+          document.removeEventListener('mouseleave', handleMouseLeave)
+        }
+      }, [])
+
     useGSAP(() => {
-        const projects = [project1Ref.current, project2Ref.current, project3Ref.current];
-
-        projects.forEach((card, index) => {
-            gsap.fromTo(card,
-                {
-                    y: 50, opacity: 0
-                },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 1,
-                    delay: 0.3 * (index + 1),
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top bottom-=100'
-                    }
+        gsap.fromTo('.project-card',
+            {
+                y: 50, opacity: 0
+            },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                stagger: 0.2,
+                scrollTrigger: {
+                    trigger: sectionRef.current,
+                    start: 'top center'
                 }
-            )
-        })
-
-        gsap.fromTo(sectionRef.current,
-            { opacity: 0 },
-            { opacity: 1, duration: 1.5 })
+            }
+        )
     }, []);
 
     return (
-        <section id="work" ref={sectionRef} className="app-showcase">
-            <div className="w-full">
-               <TitleHeader title="Showcase" sub="My Projects"/>
-                <div className="showcaselayout">
-                    <div className="first-project-wrapper" ref={project1Ref}>
-                        <div className="image-wrapper clickable" onClick={() => {
-                            setActiveProject(projects[0]);
-                            openSidebar();
-                        }}>
-                            <img src={projects[0].img} alt={projects[0].title} />
-                        </div>
-                        <div className="text-content">
-                            <h2 onClick={() => {
-                                setActiveProject(projects[0]);
+        <section id="work" ref={sectionRef} className="flex-center section-padding min-h-screen">
+            <div className="w-full h-full md:px-20 px-5">
+                <TitleHeader title="Showcase" sub="My Projects"/>
+                <div className="grid-3-cols mt-16">
+                    {projects.map((project) => (
+                        <article
+                            key={project.id}
+                            ref={(el) => {
+                                if (el) cardRefs.current[project.id] = el
+                            }}
+                            onClick={() => {
+                                setActiveProject(project);
                                 openSidebar();
-                            }} className="clickable">{projects[0].title}</h2>
-                        </div>
-                    </div>
-                    <div className="project-list-wrapper overflow-hidden">
-                        <div className="project" ref={project2Ref}>
-                            <div className="image-wrapper clickable" onClick={() => {
-                                setActiveProject(projects[1]);
-                                openSidebar();
-                            }}>
-                                <img src={projects[1].img} alt={projects[1].title} />
+                            }}
+                            className="project-card card-border card-highlight rounded-xl overflow-hidden bg-black-100 h-full 
+                                       transition-all duration-300 hover:bg-black-200 cursor-pointer
+                                       group hover:border-blue-75"
+                        >
+                            <div className="relative w-full h-48 overflow-hidden">
+                                <img 
+                                    src={project.img} 
+                                    alt={project.title}
+                                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                />
                             </div>
-                            <h2 onClick={() => {
-                                setActiveProject(projects[1]);
-                                openSidebar();
-                            }} className="clickable">
-                                {projects[1].title}
-                            </h2>
-                        </div>
-
-                        <div className="project" ref={project3Ref}>
-                            <div className="image-wrapper bg-[#ffe7eb] clickable" onClick={() => {
-                                setActiveProject(projects[2]);
-                                openSidebar();
-                            }}>
-                                <img src={projects[2].img} alt={projects[2].title} />
+                            <div className="p-8 flex flex-col gap-4">
+                                <h2 className="text-2xl font-semibold group-hover:text-blue-75 transition-colors">
+                                    {project.title}
+                                </h2>
+                                <p className="text-white-50 text-base flex-grow">
+                                    {project.description}
+                                </p>
+                                <div className="flex flex-wrap gap-2">
+                                    {project.tools.map((tool) => (
+                                        <span 
+                                            key={tool}
+                                            className="text-xs px-2 py-1 bg-black-200 text-blue-50 rounded"
+                                        >
+                                            {tool}
+                                        </span>
+                                    ))}
+                                </div>
+                                <div className="text-blue-75 text-sm font-medium mt-4 group-hover:translate-x-1 transition-transform">
+                                    View Details →
+                                </div>
                             </div>
-                            <h2 onClick={() => {
-                                setActiveProject(projects[2]);
-                                openSidebar();
-                            }} className="clickable">
-                                {projects[2].title}
-                            </h2>
-                        </div>
-                    </div>
+                        </article>
+                    ))}
                 </div>
 
                 {/* Sidebar for project details */}
@@ -136,7 +165,7 @@ const Showcase = () => {
                                     <h3 className="text-2xl md:text-3xl font-semibold mt-4">{activeProject.title}</h3>
                                 </div>
                                 
-                                <p className="mt-2">{activeProject.description}</p>
+                                <p className="mt-2">{activeProject.fullDescription}</p>
                                 <div className="hero-heading-with-bar">
                                     <span className="hero-heading-bar mt-2"></span>
                                     <h4 className="text-2xl md:text-3xl font-semibold mt-4">Tools</h4>

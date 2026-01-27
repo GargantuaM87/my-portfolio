@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { HashRouter, Routes, Route } from 'react-router-dom'
 import NavBar from './components/NavBar.jsx'
 import Footer from './sections/Footer.jsx'
 import Home from './pages/Home.jsx'
@@ -11,7 +11,7 @@ import { SidebarProvider } from './contexts/SidebarContext.jsx'
 
 const App = () => {
     return (
-        <BrowserRouter>
+        <HashRouter>
             <SidebarProvider>
                 <NavBar />
                 <main>
@@ -26,7 +26,7 @@ const App = () => {
                 </main>
                 <Footer />
             </SidebarProvider>
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 
