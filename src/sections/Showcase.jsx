@@ -17,26 +17,38 @@ const Showcase = () => {
         {
             id: 'p1',
             title: 'Small OpenGL Light Simulation',
-            img: '/images/openGLProj.png',
+            cardImage: '/images/lightSimCardPic.png',
+            sidebarImage: '/images/openGLProj.png',
             description: `A simulation of Phong lighting in OpenGL with ambient, diffuse, and specular lighting components.`,
             fullDescription: `This is a simulation of Phong lighting in OpenGL, utilizing components such as ambient, diffuse, and specular lighting. This project is tiny. It consists of some floating cubes, an interactive camera, an ImGui interface for manipulating data, two point lights, a directional light, and a spot light. I plan to gradually fix some features and add more as I continue my journey into Computer Graphics.`,
-            tools: ['C++', 'OpenGL', 'GLFW', 'GLEW', 'ImGui']
+            tools: ['C', 'C++', 'OpenGL', 'GLFW', 'GLEW', 'ImGui', 'GLM'],
+            links: [
+                { label: 'GitHub', url: 'https://github.com/GargantuaM87/OpenGL-Light-Simulation' }
+            ]
         },
         {
             id: 'p2',
             title: 'Sinful Waves',
-            img: '/images/sinfulWaves.png',
+            cardImage: '/images/sinfulWaves.png',
+            sidebarImage: '/images/sinfulWaves.png',
             description: 'A collaborative game jam submission showcasing gameplay and cooperative mechanics.',
             fullDescription: 'A collaborative game jam submission showcasing gameplay and cooperative mechanics.',
-            tools: ['Unity', 'C#', 'Netcode']
+            tools: ['Unity', 'C#'],
+            links: [
+                { label: 'Demo', url: 'https://opaline-games.itch.io/sinfulwaves' }
+            ]
         },
         {
             id: 'p3',
-            title: 'Placeholder',
-            img: '/images/project3.png',
-            description: 'A small directory app to showcase startups and profiles.',
-            fullDescription: 'A small directory app to showcase startups and profiles.',
-            tools: ['React', 'Vite', 'Tailwind']
+            title: 'Ark Shell',
+            cardImage: '/images/arkShellCardPic.png',
+            sidebarImage: '/images/arkShellCardPic.png',
+            description: 'A small shell that reads commands and executes them.',
+            fullDescription: 'A small shell created from scratch in C. It is responsible for reading input from the terminal, splitting that input into tokens, then executing appropiate programs according to what was inputted. This features only a few built-in commands and I plan to add more in the future.',
+            tools: ['C'],
+            links: [
+                { label: 'GitHub', url: 'https://github.com/GargantuaM87/ark-shell' }
+            ]
         }
     ]
 
@@ -116,7 +128,7 @@ const Showcase = () => {
                         >
                             <div className="relative w-full h-48 overflow-hidden">
                                 <img 
-                                    src={project.img} 
+                                    src={project.cardImage} 
                                     alt={project.title}
                                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                                 />
@@ -159,13 +171,37 @@ const Showcase = () => {
                                 closeSidebar();
                             }}>Close</button>
                             <div className="panel-content">
-                                <img src={activeProject.img} alt={activeProject.title} className="w-full rounded" />
+                                <img src={activeProject.sidebarImage} alt={activeProject.title} className="w-full rounded" />
                                 <div className="hero-heading-with-bar mt-2">
                                     <span className="hero-heading-bar"></span>
                                     <h3 className="text-2xl md:text-3xl font-semibold mt-4">{activeProject.title}</h3>
                                 </div>
                                 
                                 <p className="mt-2">{activeProject.fullDescription}</p>
+                                
+                                {activeProject.links && activeProject.links.length > 0 && (
+                                    <>
+                                        <div className="hero-heading-with-bar">
+                                            <span className="hero-heading-bar mt-2"></span>
+                                            <h4 className="text-2xl md:text-3xl font-semibold mt-4">Links</h4>
+                                        </div>
+                                        <div className="links-list flex flex-wrap gap-2 mt-4">
+                                            {activeProject.links.map((link) => (
+                                                <a 
+                                                    key={link.label}
+                                                    href={link.url}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className="px-4 py-2 bg-blue-75 text-white rounded font-medium 
+                                                               hover:bg-blue-85 transition-colors"
+                                                >
+                                                    {link.label}
+                                                </a>
+                                            ))}
+                                        </div>
+                                    </>
+                                )}
+                                
                                 <div className="hero-heading-with-bar">
                                     <span className="hero-heading-bar mt-2"></span>
                                     <h4 className="text-2xl md:text-3xl font-semibold mt-4">Tools</h4>
