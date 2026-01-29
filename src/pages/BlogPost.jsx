@@ -28,7 +28,8 @@ const BlogPost = () => {
 
   return (
     <section className="flex-center section-padding min-h-screen">
-      <article className="w-full h-full md:px-20 px-5">
+      <article className="w-full h-full md:px-20 px-5 flex justify-center">
+        <div className="w-full max-w-5xl">
         {/* Back Button */}
         <button
           onClick={() => navigate('/blog')}
@@ -129,6 +130,7 @@ const BlogPost = () => {
           >
             ← Back to Blog
           </button>
+        </div>
         </div>
       </article>
     </section>

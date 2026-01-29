@@ -2,6 +2,11 @@ import React, { useRef, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import TitleHeader from '../components/TitleHeader'
 import { blogPosts } from '../constants/blogPosts'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useGSAP } from '@gsap/react'
+
+gsap.registerPlugin(ScrollTrigger)
 
 const Blog = () => {
   const cardRefs = useRef({})
@@ -43,22 +48,36 @@ const Blog = () => {
     }
   }, [])
 
+  useGSAP(() => {
+    gsap.fromTo(
+      '.blog-card',
+      { y: 30, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.6,
+        stagger: 0.12,
+        ease: 'power3.out',
+        scrollTrigger: {
+          trigger: '#blog',
+          start: 'top center',
+        },
+      }
+    )
+  }, [])
+
   return (
     <section id="blog" className="flex-center section-padding min-h-screen">
       <div className="w-full h-full md:px-20 px-5">
         <TitleHeader title="Blog" sub="Writing, projects, and learning" />
         <div className="grid-3-cols mt-16">
           {blogPosts.map((post) => (
-            <Link
-              key={post.slug}
-              to={`/blog/${post.slug}`}
-              className="group"
-            >
+            <Link key={post.slug} to={`/blog/${post.slug}`} className="group">
               <article
                 ref={(el) => {
                   if (el) cardRefs.current[post.slug] = el
                 }}
-                className="card-border card-highlight rounded-xl p-8 flex flex-col gap-4 bg-black-100 h-full 
+                className="blog-card card-border card-highlight rounded-xl p-8 flex flex-col gap-4 bg-black-100 h-full 
                            transition-all duration-300 hover:bg-black-200 cursor-pointer
                            group-hover:border-blue-75"
               >

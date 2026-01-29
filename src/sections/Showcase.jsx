@@ -90,21 +90,23 @@ const Showcase = () => {
       }, [])
 
     useGSAP(() => {
-        gsap.fromTo('.project-card',
-            {
-                y: 50, opacity: 0
-            },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 1,
-                stagger: 0.2,
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: 'top center'
+        gsap.fromTo(
+                '.project-card',
+                {
+                    y: 30, opacity: 0
+                },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 0.6,
+                    stagger: 0.12,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: '#work',
+                        start: 'top center'
+                    }
                 }
-            }
-        )
+            )
     }, []);
 
     return (
