@@ -76,7 +76,7 @@ const hero = () => {
                 <header className="flex flex-col justify-center md:w-full w-screen md:px-20 px-5">
                     <div className="flex flex-col gap-2">
                         <div className="hero-text">
-                            <h1>Shaping
+                            <h1>Portfolio of
                                 <span className="slide">
                                     <span className="wrapper">
                                         {words.map((word) => (
@@ -93,8 +93,6 @@ const hero = () => {
                                     </span>
                                 </span>
                             </h1>
-                            <h1>Into Personal Projects</h1>
-                            <h1>That Amass Interest</h1>
                         </div>
 
                         <section className="mt-2 max-w-3xl space-y-6">
@@ -102,7 +100,7 @@ const hero = () => {
                                 <div className="hero-heading-with-bar mb-4">
                                     <span className="hero-heading-bar" />
                                     <h2 className="text-3xl md:text-4xl font-semibold">
-                                        Welcome!
+                                        Welcome
                                     </h2>
                                 </div>
                                 <p className="text-white-50 md:text-xl leading-relaxed">
@@ -123,7 +121,7 @@ const hero = () => {
                                     <div className="hero-heading-with-bar mb-4">
                                         <span className="hero-heading-bar" />
                                         <h3 className="text-2xl md:text-2xl font-semibold">
-                                            Interests!
+                                            Interests
                                         </h3>
                                     </div>
                                     <div className="space-y-3">
