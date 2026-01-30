@@ -1,4 +1,5 @@
 import HeroExperience from '../components/HeroExperience.jsx'
+import UpdatePanel from '../components/UpdatePanel.jsx'
 import { words } from '../constants/index.js'
 import { useRef, useEffect } from 'react'
 
@@ -65,7 +66,7 @@ const hero = () => {
     })
 
     return (
-        <section id="hero" className="relative overflow-hidden">
+        <section id="hero" className="relative overflow-hidden pt-20 md:pt-24">
             <div className="absolute top0 left-0 z-10">
                 <img src="/images/bg.png" alt="background" />
             </div>
@@ -116,27 +117,24 @@ const hero = () => {
                                 </p>
                             </div>
 
-                            <div ref={tidbitsCardRef} className="card-border card-highlight rounded-xl p-8 bg-black-100">
-                                <div className="hero-heading-with-bar mb-4">
-                                    <span className="hero-heading-bar" />
-                                    <h3 className="text-2xl md:text-3xl font-semibold">
-                                        Tidbits!
-                                    </h3>
+                            {/* Row: Tidbits card + Updates panel (side-by-side on md+, stacked on small screens) */}
+                            <div className="flex flex-col md:flex-row md:items-start gap-4">
+                                <div ref={tidbitsCardRef} className="card-border card-highlight rounded-xl p-8 bg-black-100 md:flex-1">
+                                    <div className="hero-heading-with-bar mb-4">
+                                        <span className="hero-heading-bar" />
+                                        <h3 className="text-2xl md:text-2xl font-semibold">
+                                            Interests!
+                                        </h3>
+                                    </div>
+                                    <div className="space-y-3">
+                                        <p className="text-white-50 md:text-xl leading-relaxed indent-10">
+                                            I love computer science, game development, and computer graphics. Regarding mathematics, I have an interest in linear algebra, discrete math, and calculus. 
+                                        </p>
+                                    </div>
                                 </div>
-                                <div className="space-y-3">
-                                    <p className="text-white-50 md:text-xl leading-relaxed indent-10">
-                                        • I have an Afro-Caribbean-South-American heritage (Guyanese)
-                                    </p>
-                                    <p className="text-white-50 md:text-xl leading-relaxed indent-10">
-                                        • Track and Field is my favorite sport
-                                    </p>
-                                    <p className="text-white-50 md:text-xl leading-relaxed indent-10">
-                                        • I'm a huge cat person, but I don't own one (yet)
-                                    </p>
-                                    <p className="text-white-50 md:text-xl leading-relaxed indent-10">
-                                        • I listen to so many genres of music like jazz, lofi-hiphop, rap, samba, afrobeats 
-                                            and more
-                                    </p>
+
+                                <div className="md:w-80">
+                                    <UpdatePanel />
                                 </div>
                             </div>
                         </section>
@@ -144,9 +142,11 @@ const hero = () => {
                 </header>
                 {/*RIGHT: 3D Model */}
                 <figure>
-            <div className="hero-3d-layout">
+                    <div className="hero-3d-layout">
                         <HeroExperience />
                     </div>
+
+                    {/* Duplicate UpdatePanel removed to avoid overlap; panel now only appears beside Tidbits. */}
                 </figure>
             </div>
         </section>

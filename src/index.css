@@ -27,7 +27,10 @@ section {
   --color-black-200: #282732;
   --color-blue-50: #839cb5;
   --color-blue-100: #2d2d38;
-  --color-blue-1000: #02012a
+  --color-blue-1000: #02012a;
+  --color-lavender: #845A6D;
+  --color-glaucous: #6E75A8;
+  --color-lavender-grey: #8D91C7;
 }
 
 @layer utilities {
@@ -360,7 +363,7 @@ section {
       @apply flex items-center justify-center gap-5;
 
       .icon {
-        @apply border border-black-50 bg-blue-950 flex justify-center items-center rounded-xl size-10 md:size-12 cursor-pointer transition-all duration-500 hover:bg-black-50;
+        @apply bg-blue-1000 flex justify-center items-center rounded-xl size-10 md:size-12 cursor-pointer transition-all duration-500 hover:bg-black-50;
       }
 
       img {

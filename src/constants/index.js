@@ -274,9 +274,14 @@ const navLinks = [
     },
     {
       name: "linkedin",
-      imgPath: "/images/linkedin.png",
+      imgPath: "/images/linkedinLogo.png",
       url: "https://www.linkedin.com/in/ayinde-abrams/",
     },
+    {
+      name: "itch.io",
+      imgPath: "/images/itchio.svg",
+      url: "https://nkosidaniel.itch.io/",
+    }
   ];
   
   export {
