@@ -41,7 +41,6 @@ const NavBar = () => {
                                 >
                                     <span>{name}</span>
                                     <span className="underline" />
-                                    <span className="active-indicator" />
                                 </NavLink>
                             </li>
                         ))}

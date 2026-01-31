@@ -25,7 +25,7 @@ const techStack = () => {
         <div className="w-full h-full md:px-10 px-5">
             <TitleHeader
                 title="My Preferred Tech Stack"
-                sub="🤝 What I'm Proficient In"
+                sub="What I'm Proficient In"
             />
           <div className="tech-grid">
               {techStackIcons.map((icon) => (

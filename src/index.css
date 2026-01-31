@@ -33,6 +33,18 @@ section {
   --color-lavender-grey: #8D91C7;
 }
 
+@keyframes glowPulse {
+  0% {
+    text-shadow: 0 0 10px rgba(56, 189, 248, 1), 0 0 20px rgba(56, 189, 248, 0.8), 0 0 30px rgba(56, 189, 248, 0.6), 0 0 40px rgba(56, 189, 248, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(56, 189, 248, 1), 0 0 30px rgba(56, 189, 248, 0.9), 0 0 50px rgba(56, 189, 248, 0.7), 0 0 70px rgba(56, 189, 248, 0.5);
+  }
+  100% {
+    text-shadow: 0 0 10px rgba(56, 189, 248, 1), 0 0 20px rgba(56, 189, 248, 0.8), 0 0 30px rgba(56, 189, 248, 0.6), 0 0 40px rgba(56, 189, 248, 0.4);
+  }
+}
+
 @layer utilities {
   .flex-center {
     @apply flex justify-center items-center;
@@ -170,7 +182,7 @@ section {
           }
 
           .nav-link span:first-child {
-            @apply transition-colors duration-300 hover:text-white;
+            @apply transition-all duration-300 hover:text-white;
           }
 
           .underline {
@@ -181,8 +193,9 @@ section {
             @apply absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-3 rounded-full bg-sky-400 opacity-0 transition-opacity duration-300;
           }
 
-          .nav-link-active .active-indicator {
-            @apply opacity-100;
+          .nav-link-active span:first-child {
+            @apply text-white;
+            animation: glowPulse 2s ease-in-out infinite;
           }
         }
       }
