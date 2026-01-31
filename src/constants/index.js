@@ -95,24 +95,16 @@ const navLinks = [
   
   const techStackImgs = [
     {
-      name: "React Developer",
-      imgPath: "/images/logos/react.png",
-    },
-    {
-      name: "Python Developer",
-      imgPath: "/images/logos/python.svg",
-    },
-    {
-      name: "Backend Developer",
-      imgPath: "/images/logos/node.png",
-    },
-    {
-      name: "Interactive Developer",
-      imgPath: "/images/logos/three.png",
-    },
-    {
-      name: "Project Manager",
+      name: "Git",
       imgPath: "/images/logos/git.svg",
+    },
+    {
+      name: "C/C++",
+      imgPath: "/images/logos/C_Logo.svg",
+    },
+    {
+      name: "OpenGL",
+      imgPath: "/images/logos/openglLogo.png",
     },
   ];
   

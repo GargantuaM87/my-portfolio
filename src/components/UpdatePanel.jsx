@@ -6,7 +6,6 @@ const formatBlogItem = (post) => ({
   id: `blog-${post.id}`,
   type: 'Blog',
   title: post.title,
-  desc: post.description,
 })
 
 const formatSkillItem = (skill, idx) => ({

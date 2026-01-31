@@ -113,7 +113,7 @@ const Showcase = () => {
         <section id="work" ref={sectionRef} className="flex-center section-padding min-h-screen">
             <div className="w-full h-full md:px-20 px-5">
                 <TitleHeader title="Showcase" sub="My Projects"/>
-                <div className="grid-3-cols mt-16">
+                <div className="grid-3-cols mt-32">
                     {projects.map((project) => (
                         <article
                             key={project.id}
@@ -128,7 +128,7 @@ const Showcase = () => {
                                        transition-all duration-300 hover:bg-black-200 cursor-pointer
                                        group hover:border-blue-75"
                         >
-                            <div className="relative w-full h-48 overflow-hidden">
+                            <div className="relative w-full h-55 overflow-hidden">
                                 <img 
                                     src={project.cardImage} 
                                     alt={project.title}

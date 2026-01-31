@@ -24,7 +24,7 @@ const HeroExperience = () => {
 
                 enablePan={false}
 
-                enableZoom={!isTablet}
+                enableZoom={false}
 
                 maxDistance={20}
 
